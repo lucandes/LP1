@@ -1,17 +1,39 @@
 #include <iostream>
 #include <string>
+#include <fstream>
+
+void print_usage(std::string filename);
 
 int main(int argc, char *argv[]){
-	std::string msg;
-	if (argc == 1 || std::string(argv[1]) != "add"){
-		std::cout << "Uso: " << argv[0] << " add <mensagem>" << std::endl;
+	if (argc == 1){
+		print_usage(argv[0]);
 		return 1;
 	}
-	if (argc == 2 && std::string(argv[1]) == "add"){
+
+	std::string action = std::string(argv[1]);
+	std::string msg;
+	if (argc == 2){
+		if (action != "add"){
+			print_usage(argv[0]);
+			return 1;
+		}
 		std::cout << "Insira a mensagem: ";
 		std::getline(std::cin, msg);
 	}
 
+	else if (argc > 2){
+		msg = std::string(argv[2]);
+	}
+
+	std::ofstream arquivo_saida("log.txt", std::ios::app);
+	arquivo_saida << msg << std::endl;
+	arquivo_saida.close();
+
 	std::cout << "Mensagem Adicionada" << std::endl;
 	return 0;
+}
+
+
+void print_usage(std::string filename){
+	std::cout << "Uso: " << filename << " add <mensagem>" << std::endl;
 }
