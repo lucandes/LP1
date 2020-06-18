@@ -16,24 +16,23 @@ int main(int argc, char *argv[]){
 	std::string action = argv[1];
 	std::string message;
 	std::string const filename = "diary.txt";
-	if (argc > 1){
-		if (!action.compare(actionList[0]) && argc <= 3){
-			if (argc == 2){
-				std::cout << "Insira a mensagem: ";
-				std::getline(std::cin, message);
-			}
-			else {
-				message = std::string(argv[2]);
-			}
-			return add_message(filename, message);
-		}
-		if (!action.compare(actionList[1]) && argc == 2){
-			return list_file(filename);
+	
+	if (!action.compare(actionList[0]) && argc <= 3){
+		if (argc == 2){
+			std::cout << "Insira a mensagem: ";
+			std::getline(std::cin, message);
 		}
 		else {
-			print_usage(argv[0]);
-			return 1;
+			message = std::string(argv[2]);
 		}
+		return add_message(filename, message);
+	}
+	if (!action.compare(actionList[1]) && argc == 2){
+		return list_file(filename);
+	}
+	else {
+		print_usage(argv[0]);
+		return 1;
 	}
 
 	return 0;
