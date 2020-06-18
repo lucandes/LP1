@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
 	std::string action = argv[1];
 	std::string message;
 	std::string const filename = "diary.txt";
-	if (argc >= 2){
+	if (argc > 1){
 		if (!action.compare(actionList[0]) && argc <= 3){
 			if (argc == 2){
 				std::cout << "Insira a mensagem: ";
@@ -34,11 +34,6 @@ int main(int argc, char *argv[]){
 			print_usage(argv[0]);
 			return 1;
 		}
-	}
-
-	else {
-		print_usage(argv[0]);
-		return 1;
 	}
 
 	return 0;
