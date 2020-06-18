@@ -68,4 +68,6 @@ int list_file(const std::string filename){
 		std::cout << line << std::endl;
 	}
 	arquivo_entrada.close();
+
+	return 0;
 }
