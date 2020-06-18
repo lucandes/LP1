@@ -4,6 +4,7 @@
 
 void print_usage(const std::string &progname);
 int list_file(const std::string filename);
+int add_message(const std::string filename, std::string message);
 
 int main(int argc, char *argv[]){
 	if (argc == 1){
@@ -11,17 +12,24 @@ int main(int argc, char *argv[]){
 		return 1;
 	}
 
+	std::string actionList[] = {"add", "list"};
 	std::string action = argv[1];
-	std::string msg;
+	std::string message;
 	std::string const filename = "diary.txt";
-	if (argc == 2){
-		if (action == "list"){
+	if (argc >= 2){
+		if (!action.compare(actionList[0]) && argc <= 3){
+			if (argc == 2){
+				std::cout << "Insira a mensagem: ";
+				std::getline(std::cin, message);
+			}
+			else {
+				message = std::string(argv[2]);
+			}
+			return add_message(filename, message);
+		}
+		if (!action.compare(actionList[1]) && argc == 2){
 			return list_file(filename);
 		}
-		if (action == "add"){
-			std::cout << "Insira a mensagem: ";
-			std::getline(std::cin, msg);
-		}
 		else {
 			print_usage(argv[0]);
 			return 1;
@@ -29,23 +37,7 @@ int main(int argc, char *argv[]){
 	}
 
 	else {
-		if (action == "add"){
-			msg = std::string(argv[2]);
-		}
-		else {
-			print_usage(argv[0]);
-			return 1;
-		}
-	}
-
-	std::ofstream arquivo_saida(filename, std::ios::app);
-	if (arquivo_saida.is_open()){
-		arquivo_saida << msg << std::endl;
-		arquivo_saida.close();
-		std::cout << "Mensagem Adicionada" << std::endl;
-	}
-	else {
-		std::cerr << "Erro: arquivo não pode ser aberto." << std::endl;
+		print_usage(argv[0]);
 		return 1;
 	}
 
@@ -54,7 +46,8 @@ int main(int argc, char *argv[]){
 
 
 void print_usage(const std::string &progname){
-	std::cout << "Uso: " << progname << " add <mensagem>" << std::endl;
+	std::cout << "Uso: " << progname << " <comando>" << std::endl;
+	std::cout << "Comandos:\n- add  (nova mensagem)\n- list (listar mensagens)\n";
 }
 
 int list_file(const std::string filename){
@@ -69,5 +62,18 @@ int list_file(const std::string filename){
 	}
 	arquivo_entrada.close();
 
+	return 0;
+}
+
+int add_message(const std::string filename, std::string message){
+	std::ofstream arquivo_saida(filename, std::ios::app);
+	if (arquivo_saida.fail()){
+		std::cerr << "Erro: arquivo não pode ser aberto." << std::endl;
+		return 1;
+	}
+
+	arquivo_saida << message << std::endl;
+	arquivo_saida.close();
+	std::cout << "Mensagem Adicionada" << std::endl;
 	return 0;
 }
