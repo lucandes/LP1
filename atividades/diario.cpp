@@ -59,7 +59,7 @@ int list_file(const std::string filename){
 	}
 	std::string line;
 	while (std::getline(arquivo_entrada, line)){
-		if (line[0] == '#')
+		if (line[0] == '#' || line.length() == 0)
 			continue;
 		if (line[0] == '-'){
 			std::cout << "- " << line.substr(11, line.length()) << std::endl;
@@ -91,8 +91,9 @@ int add_message(const std::string filename, std::string message){
 		std::cerr << "Erro: arquivo não pode ser aberto." << std::endl;
 		return 1;
 	}
-	if (newDate)
-		arquivo_saida << "#" << get_current_date() << std::endl;
+	if (newDate){
+		arquivo_saida << std::endl << "#" << get_current_date() << std::endl << std::endl;
+	}
 	arquivo_saida << "- "<< get_current_time() << " " << message << std::endl;
 	arquivo_saida.close();
 	std::cout << "Mensagem Adicionada" << std::endl;
