@@ -16,9 +16,11 @@ struct Diary {
 
 	void add(const std::string &message);
 	void write();
-	int load_messages(const std::string &filename);
+	int load_messages();
 	std::string get_current_time();
 	std::string get_current_date(); // change it to return date and time struct
+
+	~Diary();
 };
 
 #endif
