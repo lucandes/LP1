@@ -1,4 +1,4 @@
-#include "../include/diary.h"
+#include "diary.h"
 
 Diary::Diary(const std::string &filename) : filename(filename){
 	messages_capacity = 10;
@@ -7,8 +7,10 @@ Diary::Diary(const std::string &filename) : filename(filename){
 }
 
 void Diary::add(const std::string &message){
-	Message new_message;
-	new_message.content = message;
+	Date date = get_current_date();
+	Time time = get_current_time();
+
+	Message new_message(date, time, message);
 	messages[messages_size] = new_message;
 	messages_size++;
 }

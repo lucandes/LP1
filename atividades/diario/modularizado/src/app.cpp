@@ -1,4 +1,4 @@
-#include "../include/app.h"
+#include "app.h"
 
 App::App(const std::string &filename): diary(filename)
 {}

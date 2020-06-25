@@ -3,7 +3,8 @@
 
 #include <string>
 #include <fstream>
-#include <ctime>
+#include "date.h"
+#include "time.h"
 #include "message.h"
 
 struct Diary {
@@ -17,8 +18,6 @@ struct Diary {
 	void add(const std::string &message);
 	void write();
 	int load_messages();
-	std::string get_current_time();
-	std::string get_current_date(); // change it to return date and time struct
 
 	~Diary();
 };
