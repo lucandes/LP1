@@ -16,6 +16,7 @@ struct Time {
 	std::string to_string();
 };
 
+Time time_from_string(const std::string time);
 Time get_current_time();
 
 #endif

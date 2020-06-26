@@ -6,6 +6,13 @@ Date::Date() : day(0), month(0), year(0)
 Date::Date(unsigned d, unsigned m, unsigned y) : day(d), month(m), year(y)
 {}
 
+bool Date::compare(const Date date){
+	if (day == date.day && month == date.month && year == date.year){
+		return true;
+	}
+	return false
+}
+
 std::string Date::to_string(){
 	std::stringstream stream;
 	day < 10 ? stream << '0' << day : stream << day;
@@ -15,6 +22,25 @@ std::string Date::to_string(){
 	stream << year;
 
 	return stream.str();
+}
+
+Date date_from_string(const std::string date){
+	std::stringstream stream;
+	stream << date;
+
+	unsigned day;
+	unsigned month;
+	unsigned year;
+	char discard;
+
+	stream >> day;
+	stream >> discard;
+	stream >> month;
+	stream >> discard;
+	stream >> year;
+
+	Date new_date(day, month, year);
+	return new_date;
 }
 
 Date get_current_date(){

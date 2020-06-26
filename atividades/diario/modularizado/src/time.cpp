@@ -17,6 +17,25 @@ std::string Time::to_string(){
 	return stream.str();
 }
 
+Time time_from_string(const std::string time){
+	std::stringstream stream;
+	stream << time;
+
+	unsigned hour;
+	unsigned minute;
+	unsigned second;
+	char discard;
+
+	stream >> hour;
+	stream >> discard;
+	stream >> minute;
+	stream >> discard;
+	stream >> second;
+
+	Time new_time(hour, minute, second);
+	return new_time;
+}
+
 Time get_current_time(){
 	std::time_t time = std::time(nullptr);
 	char result[1024];

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <fstream>
+#include <sstream>
 #include "date.h"
 #include "time.h"
 #include "message.h"
@@ -16,7 +17,8 @@ struct Diary {
 	size_t messages_capacity;
 
 	void add(const std::string &message);
-	void write();
+	void add(const std::string &message, const Time time, const Date date);
+	int write();
 	int load_messages();
 
 	~Diary();
