@@ -33,4 +33,4 @@ pdf: ./db.md
 	pandoc -f markdown -t context -o diary.pdf db.md 
 
 zip:
-	zip -r $(MATRICULA).zip ../modularizado
+	zip -r $(MATRICULA).zip .
