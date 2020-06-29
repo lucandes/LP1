@@ -1,4 +1,4 @@
-#include "date.h"
+#include "Date.h"
 
 Date::Date() : day(0), month(0), year(0)
 {}
@@ -10,7 +10,7 @@ bool Date::compare(const Date date){
 	if (day == date.day && month == date.month && year == date.year){
 		return true;
 	}
-	return false
+	return false;
 }
 
 std::string Date::to_string(){

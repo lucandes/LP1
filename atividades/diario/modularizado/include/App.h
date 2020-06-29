@@ -1,7 +1,7 @@
 #ifndef APP_H
 #define APP_H
 
-#include "diary.h"
+#include "Diary.h"
 #include <string>
 #include <iostream>
 

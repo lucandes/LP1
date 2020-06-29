@@ -2,8 +2,8 @@
 #define MESSAGE_H
 
 #include <string>
-#include "time.h"
-#include "date.h"
+#include "Time.h"
+#include "Date.h"
 
 struct Message {
 	Date date;
