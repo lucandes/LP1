@@ -5,25 +5,25 @@ MATRICULA = 20190102629
 
 all: diary pdf zip
 
-diary: main.o Diary.o Date.o Message.o Time.o App.o
+diary: obj/main.o obj/Diary.o obj/Date.o obj/Message.o obj/Time.o obj/App.o
 	$(GCC) obj/*.o -o $(PROGRAMA) -std=c++11
 
-main.o:	src/main.cpp
+obj/main.o:	src/main.cpp
 	$(GCC) -c src/main.cpp $(GCC_FLAGS) -o obj/main.o
 
-Diary.o: src/Diary.cpp include/Diary.h
+obj/Diary.o: src/Diary.cpp include/Diary.h
 	$(GCC) -c src/Diary.cpp $(GCC_FLAGS) -o obj/Diary.o
 
-Date.o:	src/Date.cpp include/Date.h
+obj/Date.o:	src/Date.cpp include/Date.h
 	$(GCC) -c src/Date.cpp $(GCC_FLAGS) -o obj/Date.o
 
-Message.o: src/Message.cpp include/Message.h
+obj/Message.o: src/Message.cpp include/Message.h
 	$(GCC) -c src/Message.cpp $(GCC_FLAGS) -o obj/Message.o
 
-Time.o: src/Time.cpp include/Time.h
+obj/Time.o: src/Time.cpp include/Time.h
 	$(GCC) -c src/Time.cpp $(GCC_FLAGS) -o obj/Time.o
 
-App.o: src/App.cpp include/App.h
+obj/App.o: src/App.cpp include/App.h
 	$(GCC) -c src/App.cpp $(GCC_FLAGS) -o obj/App.o
 
 clean:

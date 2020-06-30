@@ -18,6 +18,7 @@ struct Diary {
 
 	void add(const std::string &message);
 	void add(const std::string &message, const Time time, const Date date);
+	Message* search(const std::string pattern);
 	int write();
 	int load_messages();
 	void check_capacity();

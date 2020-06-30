@@ -20,6 +20,14 @@ void Diary::add(const std::string &message, const Time time, const Date date){
 	messages_size++;
 }
 
+Message* Diary::search(const std::string pattern){
+	for (size_t i = 0; i < messages_size; ++i){
+		if (messages[i].content.find(pattern) != std::string::npos)
+			return &messages[i];
+	}
+	return nullptr;
+}
+
 int Diary::write(){
 	std::ofstream arquivo_saida(filename);
 	if (arquivo_saida.fail())
