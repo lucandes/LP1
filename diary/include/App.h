@@ -3,8 +3,10 @@
 
 #include "Diary.h"
 #include "Message.h"
+
 #include <string>
 #include <iostream>
+#include <vector>
 
 struct App {
 	Diary diary;

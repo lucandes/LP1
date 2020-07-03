@@ -3,7 +3,7 @@ GCC_FLAGS = -I include -std=c++11
 PROGRAMA = diary
 MATRICULA = 20190102629
 
-all: diary pdf zip
+all: diary
 
 diary: obj/main.o obj/Diary.o obj/Date.o obj/Message.o obj/Time.o obj/App.o
 	$(GCC) obj/*.o -o $(PROGRAMA) -std=c++11

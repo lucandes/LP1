@@ -47,7 +47,6 @@ void App::add(){
 	add(new_message);
 }
 
-
 void App::add(const std::string &message){
 	diary.add(message);
 	diary.write();
@@ -59,22 +58,26 @@ void App::search(){
 	std::getline(std::cin, pattern);
 	search(pattern);
 }
+
 void App::search(const std::string pattern){
-	Message *found;
-	found = diary.search(pattern);
-	if (found == nullptr){
+	std::vector<Message*> found_messages;
+	found_messages = diary.search(pattern);
+	if (found_messages.empty()){
 		std::cout << "No results for \"" << pattern << "\"." << std::endl;
 		return;
 	}
 
-	std::cout << "Message found: \n" << found->date.to_string() << " " << found->time.to_string()
-	<< " \"" << found->content << '"' << std::endl;
+	std::cout << "Message(s) found: " << found_messages.size() << std::endl;
+	for (auto it : found_messages){
+		std::cout << it->date.to_string() << 
+		" at " << it->time.to_string() << 
+		" \"" << it->content << "\"\n";
+	}
 }
 
 void App::list_messages(){
-	for (size_t i = 0; i < diary.messages_size; ++i){
-		const Message &message = diary.messages[i];
-		std::cout << "- " << message.content << std::endl;
+	for (auto it : diary.messages){
+		std::cout << "- " << it.content << std::endl;
 	}
 }
 
