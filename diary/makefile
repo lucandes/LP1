@@ -3,7 +3,10 @@ GCC_FLAGS = -I include -std=c++11
 PROGRAMA = diary
 MATRICULA = 20190102629
 
-all: diary
+all: obj/ diary
+
+obj/: 
+	mkdir ./obj/
 
 diary: obj/main.o obj/Diary.o obj/Date.o obj/Message.o obj/Time.o obj/App.o
 	$(GCC) obj/*.o -o $(PROGRAMA) -std=c++11
@@ -27,10 +30,10 @@ obj/App.o: src/App.cpp include/App.h
 	$(GCC) -c src/App.cpp $(GCC_FLAGS) -o obj/App.o
 
 clean:
-	rm  obj/*.o $(PROGRAMA) db.md diary.pdf $(MATRICULA).zip -f
+	rm  -dr obj/ $(PROGRAMA) diary.pdf $(MATRICULA).zip -f
 
-pdf: ./db.md 
-	pandoc -f markdown -t context -o diary.pdf db.md 
+pdf: ./diary.md 
+	pandoc -f markdown -t context -o diary.pdf diary.md 
 
 zip:
 	zip -r $(MATRICULA).zip .

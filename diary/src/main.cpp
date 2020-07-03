@@ -2,7 +2,7 @@
 
 
 int main (int argc, char *argv[]){
-	const std::string filename = "db.md";
-	App aplicativo(filename);
+	const std::string config_path = "./diary.config";
+	App aplicativo(config_path);
 	return aplicativo.run(argc, argv);
 }
