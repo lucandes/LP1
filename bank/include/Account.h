@@ -1,26 +1,32 @@
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
 
+#include "Client.h"
+#include "Agency.h"
+
 #include <string>
+#include <ctime>
 
 class Account{
     private:
-        int number;
+        std::string number;
         double balance;
-        std::string client_name;
     
     public:
+        Client client;
+        Agency agency;
+
         Account();
-        Account(std::string client_name);
+        Account(Client new_client, Agency new_agency);
         int deposit(double value);
         int withdraw(double value);
         int transfer(Account &destiny, double value);
 
         /* setters & getters */
-        void set_number(int new_number);
+        void set_number(std::string new_number);
         void set_client_name(std::string name);
         std::string get_client_name();
-        int get_number();
+        std::string get_number();
         double get_balance();
 };
 

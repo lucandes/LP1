@@ -1,14 +1,13 @@
 #include "Account.h"
 
-Account::Account(){
-    this->client_name = "";
-    this->number = 0; // note: make it random
-    this->balance = 0;
+Account::Account() : client(), agency(), number("0"), balance(0){
 }
 
-Account::Account(std::string client_name) : client_name(client_name){
-    this->number = 0;
-    this->balance = 0;
+Account::Account(Client new_client, Agency new_agency) : client(new_client), agency(new_agency), balance(0){
+    /* get a random account number using agency number */
+    srand((unsigned) this->agency.get_number());
+    int temp_number = 1000000 + (rand() % 9999999);
+    this->number = std::to_string(temp_number);
 }
 
 int Account::deposit(double value){
@@ -33,19 +32,19 @@ int Account::transfer(Account &destiny, double value){
     return 0;
 }
 
-void Account::set_number(int new_number){
+void Account::set_number(std::string new_number){
     this->number = new_number;
 }
 
 void Account::set_client_name(std::string name){
-    this->client_name = name;
+    this->client.set_name(name);
 }
 
 std::string Account::get_client_name(){
-    return this->client_name;
+    return this->client.get_name();
 }
 
-int Account::get_number(){
+std::string Account::get_number(){
     return this->number;
 }
 
