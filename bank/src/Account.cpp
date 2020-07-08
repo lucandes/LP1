@@ -1,13 +1,17 @@
 #include "Account.h"
 
-Account::Account() : client(), agency(), number("0"), balance(0){
-}
+size_t Account::accounts_counter = 0;
+
+/*Account::Account() : client(), agency(), number("0"), balance(0){
+}*/
 
 Account::Account(Client new_client, Agency new_agency) : client(new_client), agency(new_agency), balance(0){
     /* get a random account number using agency number */
     srand((unsigned) this->agency.get_number());
     int temp_number = 1000000 + (rand() % 9999999);
     this->number = std::to_string(temp_number);
+
+    this->accounts_counter += 1;
 }
 
 int Account::deposit(double value){
@@ -50,4 +54,8 @@ std::string Account::get_number(){
 
 double Account::get_balance(){
     return this->balance;
+}
+
+size_t Account::get_accounts_counter(){
+    return this->accounts_counter;
 }

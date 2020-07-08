@@ -11,12 +11,13 @@ class Account{
     private:
         std::string number;
         double balance;
+        size_t static accounts_counter;
     
     public:
         Client client;
         Agency agency;
-
-        Account();
+        
+        //Account();
         Account(Client new_client, Agency new_agency);
         int deposit(double value);
         int withdraw(double value);
@@ -28,6 +29,7 @@ class Account{
         std::string get_client_name();
         std::string get_number();
         double get_balance();
+        size_t get_accounts_counter();
 };
 
 
