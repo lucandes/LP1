@@ -9,19 +9,26 @@
 #include <iomanip>
 
 #include "Product.hpp"
+#include "Util.hpp"
 
 class Store{
 public:
 	std::vector<Product> stock;
+	std::vector<Product> sold;
+	int total_gain;
+	std::string	stock_file;
+	std::string caixa_file;
 
-	Store();
+	Store(std::string stock_file, std::string caixa_file);
 	~Store();
 	void show_stock();
+	void show_caixa();
 	void sell(int index, int quantity);
-	void show_log();
-	int find(std::string code);
+	int  find(std::string code);
 	void load_stock();
 	void register_stock();
+	void load_caixa();
+	void register_caixa();
 };
 
 #endif

@@ -7,6 +7,7 @@
 #include <iomanip>
 
 #include "Product.hpp"
+#include "Util.hpp"
 
 class Client{
 private:
@@ -18,10 +19,11 @@ public:
 	Client(int money);
 	int get_money();
 	int get_cart_cost();
-	
+
 	void buy(Product product, int quantity);
 	void show_cart();
 	void register_purchase();
+	void purchase_details();
 };
 
 #endif
