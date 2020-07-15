@@ -1,16 +1,16 @@
-#ifndef CLIENT_H
-#define CLIENT_H
+#ifndef Cliente_H
+#define Cliente_H
 
 #include <string>
 
-class Client{
+class Cliente{
     private:
         std::string name;
         std::string cpf;
     public:
-    Client();
-    Client(std::string new_name);
-    Client(std::string new_name, std::string new_cpf);
+    Cliente();
+    Cliente(std::string new_name);
+    Cliente(std::string new_name, std::string new_cpf);
 
     /* setters & getters */
     void set_name(std::string new_name);

@@ -1,16 +1,16 @@
-#ifndef AGENCY_H
-#define AGENCY_H
+#ifndef Agencia_H
+#define Agencia_H
 
 #include <string>
 
-class Agency{
+class Agencia{
     private:
         std::string name;
         int number;
         
     public:
-        Agency();
-        Agency(std::string new_name, int new_number);
+        Agencia();
+        Agencia(std::string new_name, int new_number);
 
         /* setters & getters */
         void set_name(std::string new_name);

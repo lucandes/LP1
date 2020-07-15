@@ -1,54 +1,65 @@
 #include <iostream>
 #include <iomanip>
 
-#include "Account.h"
-#include "Agency.h"
+#include "Conta.hpp"
+#include "Cliente.hpp"
+#include "ClientePJ.hpp"
+#include "Agencia.hpp"
+#include "Fila.hpp"
+#include "Fila.cpp"
 
-void print_account(Account a);
+void print_Conta(Conta a);
 
 int main(int argc, char* argv[]){
 
     std::cout << std::setprecision(2) << std::fixed; //iomanip
 
-    Agency caixa("Caixa Econômica", 1617);
-    Agency bradesco("Bradesco", 8956);
-    Agency nubank("Nubank", 4957);
+    Agencia caixa("Caixa Econômica", 1617);
+    Agencia bradesco("Bradesco", 8956);
+    Agencia nubank("Nubank", 4957);
 
-    Client joao("João Silva", "265.457.654-88");
-    Client marcelo("Marcelo Pereira", "456.987.642-74");
-    Client carlos("Carlos", "564.987.258-74");
+    Cliente joao("João PF", "265.457.654-88");
+    Cliente marcelo("Marcelo PF", "456.987.642-74");
+    Cliente carlos("Carlos PF", "564.987.258-74");
 
-    Account conta_joao(joao, caixa);
-    conta_joao.deposit(1000.00);
-    
-    Account conta_marcelo(marcelo, bradesco);
-    conta_marcelo.deposit(2000.53);
+    Fila<Cliente> clientes(10);
+    clientes.push(joao);
+    std::cout << "Ultimo na fila PF: ";
+    std::cout << clientes.back().get_name() << std::endl;
+    clientes.push(marcelo);
+    std::cout << "Ultimo na fila PF: ";
+    std::cout << clientes.back().get_name() << std::endl;
+    clientes.push(carlos);
+    std::cout << "Ultimo na fila PF: ";
+    std::cout << clientes.back().get_name() << std::endl;
 
-    Account conta_carlos(carlos, nubank);
-    conta_carlos.deposit(200.10);
+    ClientePJ joana("Joana PJ", "74.895.654/6755-77");
+    ClientePJ maria("Maria PJ", "32.005.124/2354-12");
+    ClientePJ vitoria("Vitoria PJ", "65.425.689/4578-87");
 
-    print_account(conta_marcelo);
-    print_account(conta_joao);
+    Fila<ClientePJ> clientesPJ(10);
+    clientesPJ.push(joana);
+    std::cout << "\nUltimo na fila PJ: ";
+    std::cout << clientesPJ.back().get_razao_social() << std::endl;
+    clientesPJ.push(maria);
+    std::cout << "Ultimo na fila PJ: ";
+    std::cout << clientesPJ.back().get_razao_social() << std::endl;
+    clientesPJ.push(vitoria);
+    std::cout << "Ultimo na fila PJ: ";
+    std::cout << clientesPJ.back().get_razao_social() << std::endl;
 
-    double transfer_value = 400.50;
-    std::cout << std::endl << "Transferindo $ " << transfer_value << " de Marcelo para João" << std::endl << std::endl; 
-    if (conta_marcelo.transfer(conta_joao, transfer_value) == 1){
-        std::cout << "Erro: valor transferido maior que saldo disponível." << std::endl;
-        exit(1);
-    }
-
-    print_account(conta_marcelo);
-    print_account(conta_joao);
-
-    std::cout << "\nNumero de contas criadas: " << conta_joao.get_accounts_counter() << std::endl;
+    std::cout << "\nResize clientePJ to 2\n";
+    clientesPJ.resize(2);
+    std::cout << "Ultimo na fila PJ: ";
+    std::cout << clientesPJ.back().get_razao_social() << std::endl;    
 
     return 0;
 }
 
-void print_account(Account a){
+void print_Conta(Conta a){
     std::cout << std::endl << "******************************************" << std::endl;
-    std::cout << "Agency: " << a.agency.get_name() << ", " << a.agency.get_number() << std::endl;
-    std::cout << "Client: " << a.client.get_name() << ", " << a.client.get_cpf() << std::endl;
-    std::cout << "Account: " << a.get_number() << std::endl;
+    std::cout << "Agencia: " << a.agencia.get_name() << ", " << a.agencia.get_number() << std::endl;
+    std::cout << "Cliente: " << a.cliente.get_name() << ", " << a.cliente.get_cpf() << std::endl;
+    std::cout << "Conta: " << a.get_number() << std::endl;
     std::cout << "Balance: $ " << a.get_balance() << std::endl;
 }
